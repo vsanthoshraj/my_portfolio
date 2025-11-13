@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Santhosh Raj V</title>
+  <meta name="description" content="Portfolio of Santhosh Raj V — AWS Cloud & DevOps Engineer." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      scrollbar-gutter: stable;
+      --ease: cubic-bezier(.22,.61,.36,1); /* iOS-like */
+      --dur: 420ms; /* default duration */
+    }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"; }
+    html { scroll-behavior: smooth; }
+
+    /* ---- Subtle reveal on scroll (Apple-like restraint) ---- */
+    .reveal { opacity: 0; transform: translateY(10px); filter: saturate(.9); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease); transition-delay: var(--d,0ms); will-change: transform, opacity; }
+    .reveal.in { opacity: 1; transform: none; filter: saturate(1); }
+
+    /* ---- Cards ---- */
+    .card { transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), border-color 260ms var(--ease), background 260ms var(--ease); will-change: transform; }
+    .card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 24px 60px rgba(0,0,0,.45); border-color: rgba(255,255,255,0.18); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); }
+
+    /* ---- Logos ---- */
+    .logo-grid img { filter: grayscale(100%); opacity: 0.8; transition: transform 220ms var(--ease), opacity 220ms var(--ease), filter 220ms var(--ease); }
+    .logo-grid img:hover { transform: translateY(-2px) scale(1.03); opacity: 1; filter: grayscale(0%); }
+
+    /* ---- Skill badges ---- */
+    .badge { display:inline-block; padding:6px 10px; border-radius:9999px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.06); font-size:12px; color:rgba(255,255,255,0.9); transition: transform 200ms var(--ease), background 200ms var(--ease), border-color 200ms var(--ease); }
+    .badge:hover { transform: translateY(-2px); background:rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2); }
+
+    /* ---- Links: understated underline grow ---- */
+    a.slink { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0 1px; transition: background-size 260ms var(--ease), color 160ms var(--ease); }
+    a.slink:hover { background-size: 100% 1px; }
+
+    /* ---- Buttons micro-interactions ---- */
+    .btn { transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), background-color 220ms var(--ease), border-color 220ms var(--ease), color 160ms var(--ease); will-change: transform; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+    .btn:active { transform: translateY(0) scale(.99); transition-duration: 120ms; }
+
+    /* ---- Media tiles & images ---- */
+    .soft-img { transform: translateZ(0); transition: transform 320ms var(--ease), filter 320ms var(--ease); will-change: transform; }
+    .soft-img:hover { transform: scale(1.02); filter: saturate(1.05); }
+
+    /* ---- Magnetic hover (very subtle) ---- */
+    .magnet { position: relative; }
+    .magnet:hover { transform: translateZ(0); }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none !important; }
+      .card, .badge, .btn, .soft-img, .logo-grid img { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Custom focus ring for accessibility */
+    .focus-ring:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,.6); border-radius: 9999px; }
+
+    /* Header glass refinement */
+    .glass { background: color-mix(in oklab, #0a0a0a 60%, transparent); backdrop-filter: saturate(140%) blur(10px); -webkit-backdrop-filter: saturate(140%) blur(10px); }
+  </style>
+</head>
+<body class="bg-neutral-950 text-neutral-100">
+  <!-- Soft cursor glow -->
+  <div id="glow" aria-hidden="true" style="position:fixed;inset:auto auto 0 0;transform:translate(-50%,-50%);width:32vmax;height:32vmax;pointer-events:none;background:radial-gradient(40vmax 40vmax at center, rgba(99,102,241,.08), transparent 60%);mix-blend:screen;z-index:10;opacity:.8;filter:blur(14px)"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass border-b border-white/10 supports-[backdrop-filter]:bg-neutral-950/40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/my_image.jpg" alt="Portrait of Santhosh Raj V" class="h-9 w-9 rounded-full object-cover soft-img" />
+        <span class="text-xs sm:text-sm tracking-widest uppercase text-white/70">Santhosh Raj V </span>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#about" class="text-white/80 hover:text-white inline-flex items-center gap-2 slink" aria-label="About">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          About
+        </a>
+        <a href="#projects" class="text-white/80 hover:text-white inline-flex items-center gap-2 slink" aria-label="Projects">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Projects
+        </a>
+        <a href="#skills" class="text-white/80 hover:text-white inline-flex items-center gap-2 slink" aria-label="Skills">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          Skills
+        </a>
+        <a href="#contact" class="text-white/80 hover:text-white inline-flex items-center gap-2 slink" aria-label="Let's Connect">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l2.4-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 10Z"/></svg> Let's Connect </a>
+
+        <!-- Socials: LinkedIn, GitHub, WhatsApp (in this order) -->
+        <a href="https://www.linkedin.com/in/santhoshrajv9114/" target="_blank" rel="noreferrer noopener" class="text-white/80 hover:text-white inline-flex items-center gap-2 slink" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9h4v12H3zM10 9h3.8v1.64h.05c.53-1 1.8-2.06 3.7-2.06 3.96 0 4.7 2.6 4.7 6v6H18v-5.33c0-1.27-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21h-4z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/vsanthoshraj/" target="_blank" rel="noreferrer noopener" class="text-white/80 hover:text-white inline-flex items-center gap-2 slink" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A12 12 0 000 12.64c0 5.36 3.44 9.9 8.2 11.5.6.12.82-.26.82-.58v-2.02c-3.34.75-4.04-1.65-4.04-1.65-.55-1.42-1.35-1.8-1.35-1.8-1.1-.78.08-.77.08-.77 1.22.09 1.86 1.29 1.86 1.29 1.08 1.9 2.83 1.35 3.52 1.03.11-.8.42-1.35.76-1.66-2.67-.31-5.47-1.36-5.47-6.06 0-1.34.47-2.44 1.24-3.3-.12-.31-.54-1.57.12-3.28 0 0 1.01-.33 3.3 1.26a11.2 11.2 0 016 0c2.29-1.59 3.3-1.26 3.3-1.26.66 1.71.24 2.97.12 3.28.77.86 1.24 1.96 1.24 3.3 0 4.71-2.8 5.74-5.48 6.05.43.37.8 1.1.8 2.22v3.27c0 .32.22.7.82.58A12 12 0 0024 12.64 12 12 0 0012 .5z"/></svg>
+          GitHub
+        </a>
+       <a href="https://wa.me/919566066846" target="_blank" rel="noreferrer noopener" class="inline-flex items-center gap-2 text-[#25D366] hover:text-[#25D366]" aria-label="WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+           <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.01.99 4.31L2.05 22l6.29-1.9c1.26.61 2.67.94 4.16.94 5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.41 0-2.78-.36-3.97-.99l-.28-.15-2.92.88.9-2.9-.19-.3c-.67-1.18-1.04-2.53-1.04-3.94 0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.03-5.51c-.23-.12-1.35-.67-1.56-.74-.2-.07-.35-.11-.5.11-.15.22-.57.74-.7.89-.13.15-.27.17-.5.05-.23-.12-1-.37-1.92-1.19-.71-.63-1.19-1.42-1.33-1.65-.13-.23-.01-.35.1-.46.1-.1.23-.27.35-.4.12-.13.16-.22.24-.37.08-.14.04-.27-.02-.38-.06-.11-.5-1.21-.69-1.65-.18-.43-.36-.37-.5-.37h-.42c-.15 0-.39.06-.59.27-.2.21-.76.74-.76 1.81 0 1.07.78 2.1.88 2.25.1.15 1.4 2.15 3.4 3.01.48.21.86.33 1.16.42.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94.16-.47.16-.86.11-.94-.05-.09-.19-.14-.42-.23z"/>
+         </svg>
+  WhatsApp
+</a>
+
+      </nav>
+
+      <!-- Resume button (desktop) -->
+      <a href="Santhosh_Raj_V_AWS_Cloud_DevOps_Resume.pdf" download class="hidden md:inline-flex px-3.5 py-2 rounded-full bg-white text-black text-sm font-medium hover:shadow-md btn focus-ring" aria-label="Download Resume">
+        Resume
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-white/80 hover:text-white hover:bg-white/5 btn focus-ring" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Menu
+      </button>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileMenu" class="md:hidden max-w-6xl mx-auto px-4 pb-4">
+      <div class="mt-2 rounded-2xl border border-white/10 bg-neutral-950/80 backdrop-blur-md p-3 shadow-2xl hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
+        <div class="grid gap-2 text-sm">
+          <a href="#about" class="block rounded-lg px-3 py-2 hover:bg-white/5 btn">About</a>
+          <a href="#projects" class="block rounded-lg px-3 py-2 hover:bg-white/5 btn">Projects</a>
+          <a href="#skills" class="block rounded-lg px-3 py-2 hover:bg-white/5 btn">Skills</a>
+          <a href="#contact" class="block rounded-lg px-3 py-2 hover:bg-white/5 btn"> Let's Connect </a>
+        </div>
+        <div class="mt-3 grid grid-cols-3 gap-2">
+          <a href="https://www.linkedin.com/in/santhoshrajv9114/" target="_blank" rel="noreferrer noopener" class="rounded-lg px-3 py-2 text-center border border-white/10 hover:bg-white/5 btn">LinkedIn</a>
+          <a href="https://github.com/vsanthoshraj" target="_blank" rel="noreferrer noopener" class="rounded-lg px-3 py-2 text-center border border-white/10 hover:bg-white/5 btn">GitHub</a>
+          <a href="https://wa.me/919566066846" target="_blank" rel="noreferrer noopener" class="rounded-lg px-3 py-2 text-center border border-white/10 hover:bg-white/5 text-[#25D366] btn">WhatsApp</a>
+        </div>
+        <a href="Santhosh_Raj_V_AWS_Cloud_DevOps_Resume.pdf" download class="mt-3 block rounded-lg px-3 py-2 text-center bg-white text-black font-medium btn">Download Resume</a>
+      </div>
+    </div>
+  </header>
+
+    <!-- Hero -->
+<section class="relative overflow-hidden">
+  <style>
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s ease-out forwards; }
+    .fade-in-2 { animation-delay: 0.15s; }
+    .fade-in-3 { animation-delay: 0.3s; }
+    .fade-in-4 { animation-delay: 0.45s; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+  </style>
+
+  <!-- Animated background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-purple-950/20 pointer-events-none"></div>
+  
+  <!-- Animated blur circles -->
+  <div class="absolute top-10 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse pointer-events-none" style="animation-delay: 2s;"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 pt-20 pb-24 sm:pb-32 text-center">
+    <!-- Name Badge - Centered -->
+    <div class="fade-in inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm mb-8 mx-auto">
+      <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+      <span class="text-xs tracking-widest uppercase font-semibold text-white/90">AWS Cloud & DevOps Engineer</span>
+    </div>
+
+    <!-- Main Headline with Name - Centered -->
+    <div class="mb-6">
+      <h1 class="fade-in text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tighter">
+        <span class="block text-white">SANTHOSH RAJ V</span>
+        <span class="block mt-2" style="background: linear-gradient(to right, #eef208, #eef208, #eef208); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AWS CLOUD & DEVOPS</span>
+      </h1>
+    </div>
+
+    <!-- Tagline - Centered -->
+    <p class="fade-in fade-in-2 max-w-2xl mx-auto text-lg md:text-xl text-white/80 leading-relaxed mb-8">
+      I architect <span class="text-white font-semibold">secure, scalable cloud infrastructure</span> on AWS and craft <span class="text-white font-semibold">frictionless CI/CD pipelines</span> with Terraform, Jenkins, and Docker. Security-first, cost-aware, and production-ready.
+    </p>
+
+    <!-- Stats or Key Points - Centered -->
+    <div class="fade-in fade-in-3 grid grid-cols-3 gap-4 mb-10 max-w-md mx-auto">
+      <div class="flex flex-col items-center">
+        <span class="text-2xl md:text-3xl font-bold" style="color: #ffffff;">3</span>
+        <span class="text-xs text-white/60 uppercase tracking-wide">Cloud Projects</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="text-2xl md:text-3xl font-bold" style="color: #ffffff;">AWS CCP</span>
+        <span class="text-xs text-white/60 uppercase tracking-wide">Certified</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="text-2xl md:text-3xl font-bold" style="color: #ffffff;">100%</span>
+        <span class="text-xs text-white/60 uppercase tracking-wide">Production Ready</span>
+      </div>
+    </div>
+
+    <!-- CTA Buttons - Centered -->
+    <div class="fade-in fade-in-4 flex flex-wrap gap-4 items-center justify-center">
+      <!-- Primary Button -->
+      <a class="px-6 py-3.5 rounded-full bg-white text-black font-bold text-base hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2" style="transform: translateZ(0);" href="#work">
+        <span>View My Work</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      
+      <!-- Secondary Button -->
+      <a class="px-6 py-3.5 rounded-full text-white font-bold transition-all duration-300 backdrop-blur-sm" style="border: 2px solid rgba(255, 255, 255, 0.3);" href="#about">
+        Learn About Me
+      </a>
+
+      <!-- WhatsApp Button -->
+      <a class="px-6 py-3.5 rounded-full text-white font-semibold transition-all duration-300 backdrop-blur-sm inline-flex items-center gap-2" style="border: 2px solid rgba(16, 185, 129, 0.5); color: #10b981;" href="https://wa.me/919566066846" target="_blank" rel="noreferrer noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.01.99 4.31L2.05 22l6.29-1.9c1.26.61 2.67.94 4.16.94 5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.41 0-2.78-.36-3.97-.99l-.28-.15-2.92.88.9-2.9-.19-.3c-.67-1.18-1.04-2.53-1.04-3.94 0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.03-5.51c-.23-.12-1.35-.67-1.56-.74-.2-.07-.35-.11-.5.11-.15.22-.57.74-.7.89-.13.15-.27.17-.5.05-.23-.12-1-.37-1.92-1.19-.71-.63-1.19-1.42-1.33-1.65-.13-.23-.01-.35.1-.46.1-.1.23-.27.35-.4.12-.13.16-.22.24-.37.08-.14.04-.27-.02-.38-.06-.11-.5-1.21-.69-1.65-.18-.43-.36-.37-.5-.37h-.42c-.15 0-.39.06-.59.27-.2.21-.76.74-.76 1.81 0 1.07.78 2.1.88 2.25.1.15 1.4 2.15 3.4 3.01.48.21.86.33 1.16.42.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94.16-.47.16-.86.11-.94-.05-.09-.19-.14-.42-.23z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 animate-bounce" style="transform: translateX(-50%);">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: rgba(255, 255, 255, 0.5);">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+  <!-- About -->
+<section id="about" class="py-16">
+  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-12 gap-10 items-center">
+    <div class="md:col-span-7">
+      <h2 class="reveal text-4xl md:text-6xl font-extrabold leading-tight">About</h2>
+      <div class="reveal mt-6 text-white/80 space-y-5 text-lg md:text-xl" style="--d:120ms;">
+        
+        <p>
+          I’m <span class="text-white">Santhosh Raj V</span> an <span class="text-white">AWS Cloud & DevOps Engineer</span> who loves building systems that are simple, automated, and reliable. I’m driven by curiosity and a deep passion for open-source learning, constantly exploring new tools and technologies that make cloud automation smarter and faster.
+        <p>
+          I learn best by doing building real-world projects, experimenting with Terraform, Docker, Jenkins, and AWS to create scalable, production-ready infrastructure. Every project I work on teaches me something new about how systems can evolve to be more efficient and secure.
+        </p>
+        <p>
+         More than just engineering, I believe open-source projects are shaping the future of technology; they connect people, share ideas, and drive innovation that changes how the world builds software. My dream is to create or contribute to open-source projects that solve real problems and inspire others to build without limits.
+        </p>
+        
+
+        <p>
+          When I’m not building or automating, I’m experimenting with new stacks or collaborating on projects that make technology more open, accessible, and impactful.
+        </p>
+
+        <div class="flex flex-wrap gap-4 text-base">
+          <a class="inline-flex items-center gap-2 text-white/80 hover:text-white slink" href="mailto:sksanthosh88409@gmail.com">sksanthosh88409@gmail.com</a>
+           <a class="inline-flex items-center gap-2 text-white/80 hover:text-white slink" href="mailto:sksanthosh88409@gmail.com">+91 95660 66846</a>
+          <a class="inline-flex items-center gap-2 text-white/80 hover:text-white slink" href="Santhosh_Raj_V_AWS_Cloud_DevOps_Resume.pdf" download>Download Resume</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="md:col-span-5">
+      <div class="reveal aspect-square rounded-3xl bg-white/5 border border-white/10 overflow-hidden" style="--d:180ms;">
+        <img src="assets/my_image.jpg" alt="Santhosh Raj V" class="w-full h-full object-cover soft-img" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Education -->
+  <section id="education" class="py-16 bg-neutral-900/40">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="reveal text-4xl md:text-6xl font-extrabold mb-10">Education</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="card reveal p-8 rounded-2xl border border-white/10 bg-white/5" data-tilt>
+          <h3 class="text-2xl font-semibold">Bachelor of Computer Applications (BCA)</h3>
+          <p class="text-white/70 text-base mt-2">Drbccc Hindu College · Chennai</p>
+          <p class="text-white/60 text-base mt-1"> JULY 2019 –  MAY 2022</p>
+        </div>
+        <div class="card reveal p-8 rounded-2xl border border-white/10 bg-white/5" style="--d:120ms;" data-tilt>
+          <h3 class="text-2xl font-semibold">AWS re/Start Program</h3>
+          <p class="text-white/70 text-base mt-2">TNSDC × Cultus Education & Technology</p>
+          <p class="text-white/60 text-base mt-1"> AUG 2022 - OCT 2022</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="py-16 bg-neutral-900/30">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="reveal text-3xl md:text-5xl font-bold mb-10">Certifications</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- AWS CCP -->
+        <div class="card reveal p-6 rounded-2xl border border-white/10 bg-white/5 flex flex-col justify-between" data-tilt>
+          <div>
+            <img src="/My_portfolio-main/assets/AWS Certified Cloud Practitioner.png" alt="AWS Certified Cloud Practitioner badge" class="h-20 w-auto object-contain mb-4 soft-img" />
+            <h3 class="text-xl font-semibold">AWS Certified Cloud Practitioner</h3>
+            <p class="text-white/70 text-sm">Amazon Web Services</p>
+            <p class="text-white/60 text-sm">Issued Nov 2022</p>
+          </div>
+          <a href="https://www.credly.com/badges/d3de54d7-d061-42c6-bd45-7b91a2e07237/public_url" target="_blank" rel="noreferrer noopener" class="mt-4 inline-flex items-center gap-2 text-sm text-white/80 hover:text-white slink">View Credential →</a>
+        </div>
+
+        <!-- AWS re/Start Graduate Badge -->
+        <div class="card reveal p-6 rounded-2xl border border-white/10 bg-white/5 flex flex-col justify-between" style="--d:120ms;" data-tilt>
+          <div>
+            <img src="/My_portfolio-main/assets/restart.png" alt="AWS re/Start Graduate badge" class="h-20 w-auto object-contain mb-4 soft-img" />
+            <h3 class="text-xl font-semibold">AWS re/Start Graduate </h3>
+            <p class="text-white/70 text-sm">TNSDC × Cultus Education & Technology</p>
+            <p class="text-white/60 text-sm">Foundational Cloud, Linux, Networking, Hands-on Labs</p>
+          </div>
+          <a href="https://www.credly.com/badges/f74165d4-3c72-4936-a50f-8eb55059ae5c/linked_in?t=t4u9c3" target="_blank" rel="noreferrer noopener" class="mt-4 inline-flex items-center gap-2 text-sm text-white/80 hover:text-white slink">View Badge →</a>
+        </div>
+
+        <!-- Linux Certification (Udemy) -->
+        <div class="card reveal p-6 rounded-2xl border border-white/10 bg-white/5 flex flex-col justify-between" style="--d:240ms;" data-tilt>
+          <div>
+            <img src="/My_portfolio-main/assets/udemy.png" alt="Linux certification" class="h-20 w-auto object-contain mb-4 soft-img" />
+            <h3 class="text-xl font-semibold">Linux Command Line: From Zero to Hero</h3>
+            <p class="text-white/70 text-sm">Udemy</p>
+            <p class="text-white/60 text-sm">Command line, file system, permissions, users, services</p>
+          </div>
+          <a href="https://www.udemy.com/certificate/UC-af02b9ec-c860-4815-9cec-9e5c227aac6b/" target="_blank" rel="noreferrer noopener" class="mt-4 inline-flex items-center gap-2 text-sm text-white/80 hover:text-white slink">View Certificate →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ==========================
+     PROJECTS SECTION
+=========================== -->
+<section id="projects" class="py-20 bg-neutral-950 text-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-10">Projects</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Project 1 -->
+      <div class="card p-5 bg-white/5 border border-white/10 rounded-2xl hover:-translate-y-1 hover:shadow-2xl transition">
+        <img src="/My_portfolio-main/assets/jenkins_pipeline_800x450.jpg" alt="CI/CD Pipeline" class="rounded-xl mb-3">
+        <h3 class="text-lg font-semibold mt-2">Automated CI/CD for Node.js News Site</h3>
+        <p class="text-white/70 text-sm mt-2 mb-4">
+         Built and containerized a Node.js news website with Jenkins CI/CD, Docker, and SonarQube. Configured GitHub webhooks to trigger Jenkins pipelines on every code push automatically building, testing, and deploying updated containers on AWS EC2. Leveraged Terraform for scalable infrastructure provisioning, achieving seamless automation and a 70% reduction in deployment time.
+         </p>
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="badge">Terraform</span>
+          <span class="badge">EC2</span>
+          <span class="badge">Jenkins</span>
+          <span class="badge">Docker</span>
+          <span class="badge">SonarQube</span>
+          <span class="badge">Github webhook</span>
+        </div>
+
+        <a href="https://github.com/vsanthoshraj/jenkins-CICD-News-Website-Deployment" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-semibold text-sm hover:bg-neutral-200 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .5A12 12 0 000 12.64c0 5.36 3.44 9.9 8.2 11.5.6.12.82-.26.82-.58v-2.02c-3.34.75-4.04-1.65-4.04-1.65-.55-1.42-1.35-1.8-1.35-1.8-1.1-.78.08-.77.08-.77 1.22.09 1.86 1.29 1.86 1.29 1.08 1.9 2.83 1.35 3.52 1.03.11-.8.42-1.35.76-1.66-2.67-.31-5.47-1.36-5.47-6.06 0-1.34.47-2.44 1.24-3.3-.12-.31-.54-1.57.12-3.28 0 0 1.01-.33 3.3 1.26a11.2 11.2 0 016 0c2.29-1.59 3.3-1.26 3.3-1.26.66 1.71.24 2.97.12 3.28.77.86 1.24 1.96 1.24 3.3 0 4.71-2.8 5.74-5.48 6.05.43.37.8 1.1.8 2.22v3.27c0 .32.22.7.82.58A12 12 0 0024 12.64 12 12 0 0012 .5z"/>
+          </svg>
+          Open on GitHub
+        </a>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card p-5 bg-white/5 border border-white/10 rounded-2xl hover:-translate-y-1 hover:shadow-2xl transition">
+        <img src="/My_portfolio-main/assets/3 trier  (1)_800x450 (1).jpg" alt="AWS Portfolio" class="rounded-xl mb-3">
+        <h3 class="text-lg font-semibold mt-2"> Scalable Exam Result Web Application – AWS (3-Tier Architecture)</h3>
+        <p class="text-white/70 text-sm mt-2 mb-4">
+          Designed and deployed a secure, scalable 3-tier web application on AWS using Flask, NGINX, and RDS MySQL. Configured a custom VPC with public/private subnets, NAT Gateway, and ALB under HTTPS for high availability. Integrated Route 53 for domain routing and SSL via ACM. The architecture automatically scales and improves reliability while maintaining strong network isolation.
+        </p>
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="badge">EC2</span>
+          <span class="badge">VPC</span>
+          <span class="badge">RDS</span>
+          <span class="badge">ALB</span>
+          <span class="badge">ACM</span>
+           <span class="badge">Route 53</span>
+          <span class="badge">Application Load Balancer</span>
+          <span class="badge">Auto Scaling Group</span>
+        </div>
+
+        <a href="https://github.com/vsanthoshraj/3-tier-exam-result-website" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-semibold text-sm hover:bg-neutral-200 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .5A12 12 0 000 12.64c0 5.36 3.44 9.9 8.2 11.5.6.12.82-.26.82-.58v-2.02c-3.34.75-4.04-1.65-4.04-1.65-.55-1.42-1.35-1.8-1.35-1.8-1.1-.78.08-.77.08-.77 1.22.09 1.86 1.29 1.86 1.29 1.08 1.9 2.83 1.35 3.52 1.03.11-.8.42-1.35.76-1.66-2.67-.31-5.47-1.36-5.47-6.06 0-1.34.47-2.44 1.24-3.3-.12-.31-.54-1.57.12-3.28 0 0 1.01-.33 3.3 1.26a11.2 11.2 0 016 0c2.29-1.59 3.3-1.26 3.3-1.26.66 1.71.24 2.97.12 3.28.77.86 1.24 1.96 1.24 3.3 0 4.71-2.8 5.74-5.48 6.05.43.37.8 1.1.8 2.22v3.27c0 .32.22.7.82.58A12 12 0 0024 12.64 12 12 0 0012 .5z"/>
+          </svg>
+          Open on GitHub
+        </a>
+      </div>
+        <!-- Project 2 -->
+      <div class="card p-5 bg-white/5 border border-white/10 rounded-2xl hover:-translate-y-1 hover:shadow-2xl transition">
+        <img src="https://placehold.co/800x450/14532D/FFF?text=AWS+S3+Portfolio" alt="AWS Portfolio" class="rounded-xl mb-3">
+        <h3 class="text-lg font-semibold mt-2">Static Portfolio on S3 + CloudFront</h3>
+        <p class="text-white/70 text-sm mt-2 mb-4">
+          Optimized hosting setup with global CDN and SSL using ACM for secure and fast website delivery.
+        </p>
+
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="badge">S3</span>
+          <span class="badge">CloudFront</span>
+          <span class="badge">Route 53</span>
+          <span class="badge">ACM</span>
+        </div>
+
+        <a href="https://github.com/vsanthoshraj/aws-portfolio" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-semibold text-sm hover:bg-neutral-200 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .5A12 12 0 000 12.64c0 5.36 3.44 9.9 8.2 11.5.6.12.82-.26.82-.58v-2.02c-3.34.75-4.04-1.65-4.04-1.65-.55-1.42-1.35-1.8-1.35-1.8-1.1-.78.08-.77.08-.77 1.22.09 1.86 1.29 1.86 1.29 1.08 1.9 2.83 1.35 3.52 1.03.11-.8.42-1.35.76-1.66-2.67-.31-5.47-1.36-5.47-6.06 0-1.34.47-2.44 1.24-3.3-.12-.31-.54-1.57.12-3.28 0 0 1.01-.33 3.3 1.26a11.2 11.2 0 016 0c2.29-1.59 3.3-1.26 3.3-1.26.66 1.71.24 2.97.12 3.28.77.86 1.24 1.96 1.24 3.3 0 4.71-2.8 5.74-5.48 6.05.43.37.8 1.1.8 2.22v3.27c0 .32.22.7.82.58A12 12 0 0024 12.64 12 12 0 0012 .5z"/>
+          </svg>
+          Open on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Glass Badge Styles -->
+<style>
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+  }
+  .badge:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.25);
+    color: white;
+  }
+</style>
+
+
+      <!-- Skills -->
+  <section id="skills" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="fade-in text-4xl md:text-5xl lg:text-6xl font-extrabold mb-12">Skills </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card fade-in p-6 rounded-2xl border border-white/10 bg-white/5">
+          <h3 class="text-xl font-bold mb-4">Primary Cloud</h3>
+          <div class="flex flex-wrap gap-2"><span class="badge">VPC</span><span class="badge">EC2</span><span class="badge">S3</span><span class="badge">IAM</span><span class="badge">RDS</span><span class="badge">CloudFront</span><span class="badge">CloudWatch</span></div>
+        </div>
+        <div class="card fade-in fade-in-2 p-6 rounded-2xl border border-white/10 bg-white/5">
+          <h3 class="text-xl font-bold mb-4">DevOps & CI/CD</h3>
+          <div class="flex flex-wrap gap-2"><span class="badge">Jenkins</span><span class="badge">GitHub Webhooks</span><span class="badge">SonarQube</span><span class="badge">NGINX</span><span class="badge">Apache</span></div>
+        </div>
+        <div class="card fade-in fade-in-3 p-6 rounded-2xl border border-white/10 bg-white/5">
+          <h3 class="text-xl font-bold mb-4">Infrastructure as Code</h3>
+          <div class="flex flex-wrap gap-2"><span class="badge">Terraform</span><span class="badge">Modules</span><span class="badge">Workspaces</span><span class="badge">Remote State</span></div>
+        </div>
+        <div class="card fade-in p-6 rounded-2xl border border-white/10 bg-white/5">
+          <h3 class="text-xl font-bold mb-4">Containers</h3>
+          <div class="flex flex-wrap gap-2"><span class="badge">Docker</span><span class="badge">Lazy Docker</span><span class="badge">Docker Hub</span><span class="badge">ECR</span></div>
+        </div>
+        <div class="card fade-in fade-in-2 p-6 rounded-2xl border border-white/10 bg-white/5">
+          <h3 class="text-xl font-bold mb-4">Security & Networking</h3>
+          <div class="flex flex-wrap gap-2"><span class="badge">IAM Roles</span><span class="badge">Security Groups</span><span class="badge">SSM Session Manager</span><span class="badge">TLS/ACM</span></div>
+        </div>
+        <!-- Databases & Operating Systems -->
+      <div class="card fade-in fade-in-3 p-6 rounded-2xl border border-white/10 bg-white/5">
+        <h3 class="text-xl font-bold mb-4">Database & OS</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">MySQL</span>
+          <span class="badge">Linux (Ubuntu)</span>
+          <span class="badge">Linux (Amazon Linux)</span>
+          <span class="badge">Windows</span>
+        </div>
+      </div>
+
+      <!-- Version Control & Tools -->
+      <div class="card fade-in fade-in-3 p-6 rounded-2xl border border-white/10 bg-white/5">
+        <h3 class="text-xl font-bold mb-4">Version Control & Tools</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">Git</span>
+          <span class="badge">GitHub</span>
+          <span class="badge">VS Code</span>
+          <span class="badge">CLI</span>
+          <span class="badge">SSH</span>
+          <span class="badge">PuTTY</span>
+          <span class="badge">WinSCP</span>
+        </div>
+      </div>
+
+      <!-- Programming & Web -->
+      <div class="card fade-in fade-in-2 p-6 rounded-2xl border border-white/10 bg-white/5">
+        <h3 class="text-xl font-bold mb-4">Programming & Web</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">Python</span>
+          <span class="badge">HTML</span>
+          <span class="badge">CSS</span>
+          <span class="badge">Bash</span>
+        </div>
+      </div>
+  </section>
+  
+
+  <!-- ===============================
+     COMPACT GLASS SKILLS SECTION
+     =============================== -->
+<section id="skills-1" class="py-16 bg-neutral-900/40 text-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-blue-950/10 via-transparent to-purple-950/10 pointer-events-none"></div>
+
+  <div class="relative max-w-6xl mx-auto px-5">
+    <h2 class="fade-in text-4xl md:text-5xl lg:text-6xl font-extrabold mb-12"> Technical Skills </h2>
+    <!-- Centered grid (no scroll) -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 justify-items-center">
+      <!-- Skill -->
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/aws.png" alt="AWS">
+        </div>
+        <p class="skill-label">AWS</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/ubuntu.png" alt="Ubuntu">
+        </div>
+        <p class="skill-label">Ubuntu</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/python.png" alt="Python">
+        </div>
+        <p class="skill-label">Python</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/mysql.png" alt="MySQL">
+        </div>
+        <p class="skill-label">MySQL</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/git.png" alt="Git">
+        </div>
+        <p class="skill-label">Git</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/github.png" alt="GitHub">
+        </div>
+        <p class="skill-label">GitHub</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/Docker.png" alt="Docker">
+        </div>
+        <p class="skill-label">Docker</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/terraform.png" alt="Terraform">
+        </div>
+        <p class="skill-label">Terraform</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/jenkins.png" alt="Jenkins">
+        </div>
+        <p class="skill-label">Jenkins</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="glass-circle">
+          <img src="/My_portfolio-main/assets/SonarQube.png" alt="SonarQube">
+        </div>
+        <p class="skill-label">SonarQube</p>
+    </div>
+  </div>
+
+  <style>
+    /* Compact glass circles */
+    .glass-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .glass-circle:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      border-color: rgba(255,255,255,0.25);
+    }
+    .glass-circle img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .skill-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.85);
+      margin-top: 6px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+  </style>
+</section>
+
+  
+
+  <!-- Contact -->
+  <section id="contact" class="relative overflow-hidden py-20 md:py-28">
+    <!-- Animated background -->
+    <div class="absolute inset-0 bg-gradient-to-tl from-emerald-950/20 via-transparent to-blue-950/20 pointer-events-none"></div>
+    <div class="absolute top-1/2 left-10 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse pointer-events-none" style="animation-delay: 2s;"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <!-- Section Badge -->
+      <div class="fade-in inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm mb-8 mx-auto">
+        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+        <span class="text-xs tracking-widest uppercase font-semibold text-white/90">Ready to Work Together</span>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="fade-in text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tighter">
+        <span class="block text-white">Let's Build</span>
+        <span class="block mt-2" style="background: linear-gradient(to right,  #eef208, #eef208, #eef208); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Something Reliable</span>
+      </h2>
+
+      <!-- Description -->
+      <p class="fade-in fade-in-2 max-w-2xl mx-auto text-lg md:text-xl text-white/80 leading-relaxed mt-6 mb-10">
+        Open to <span class="text-white font-semibold">AWS Cloud & DevOps roles anywhere in India</span>. Whether it's cloud architecture, CI/CD automation, or platform hardening,  I'd love to collaborate and build something reliable together.
+      </p>
+
+     <!-- Stats Row -->
+<div class="fade-in fade-in-3 grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto">
+  <div class="flex flex-col">
+    <span class="text-xl md:text-2xl font-bold text-white">24hrs</span>
+    <span class="text-xs text-white/60 uppercase tracking-wide">Response Time</span>
+  </div>
+  <div class="flex flex-col">
+    <span class="text-xl md:text-2xl font-bold text-white">Chennai</span>
+    <span class="text-xs text-white/60 uppercase tracking-wide">Location</span>
+  </div>
+  <div class="flex flex-col">
+    <span class="text-xl md:text-2xl font-bold text-white">Full-Time</span>
+    <span class="text-xs text-white/60 uppercase tracking-wide">Availability</span>
+  </div>
+  <div class="flex flex-col">
+    <span class="text-xl md:text-2xl font-bold text-white">Always</span>
+    <span class="text-xs text-white/60 uppercase tracking-wide">Open to Talk</span>
+  </div>
+</div>
+
+
+      <div class="reveal mt-8 flex flex-wrap items-center justify-center gap-3 md:gap-4 cta-group" style="--d:200ms;">
+  <a href="mailto:sksanthosh88409@gmail.com" aria-label="Email Santhosh Raj V"
+     class="cta-btn cta-secondary magnet">
+    Email me
+  </a>
+
+  <a href="https://www.linkedin.com/in/santhoshrajv9114/" target="_blank" rel="noreferrer noopener"
+     class="cta-btn cta-outline">
+    LinkedIn
+  </a>
+
+  <a href="tel:+919566066846" aria-label="Call Santhosh Raj V"
+     class="cta-btn cta-primary magnet">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.14a2 2 0 0 1 2.11-.45c.83.29 1.7.5 2.6.62A2 2 0 0 1 22 16.92z"/>
+    </svg>
+    <span>Call: +91 95660 66846</span>
+  </a>
+
+  <a href="https://wa.me/919566066846" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp"
+     class="cta-btn cta-ghost">
+    WhatsApp
+  </a>
+
+  <a href="Santhosh_Raj_V_AWS_Cloud_DevOps_Resume.pdf" download aria-label="Download Resume"
+     class="cta-btn cta-mini">
+    Resume
+  </a>
+</div>
+
+<style>
+/* You may need to add basic CSS for the utility classes like 'mt-8', 'flex', 'items-center', 'justify-center', 'gap-3', 'md:gap-4', 'reveal', etc., for the layout to look exactly like the original design, as those classes are from a CSS framework like Tailwind CSS and are not defined here. The styles below are for the button aesthetics only. */
+
+.cta-group { z-index: 20; }
+
+/* Base button */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.05rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-decoration: none;
+  will-change: transform, box-shadow;
+  transition: transform 260ms cubic-bezier(.22,.61,.36,1), box-shadow 260ms cubic-bezier(.22,.61,.36,1), background-color 200ms;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  color: rgba(255,255,255,0.92);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+  min-height: 44px;
+}
+
+/* Primary large white button (center) */
+.cta-primary {
+  background: linear-gradient(180deg,#ffffff,#f8f8f8);
+  color: #0b0b0b;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  box-shadow: 0 14px 30px rgba(11,11,11,0.25), inset 0 1px 0 rgba(255,255,255,0.6);
+  transform-origin: center;
+}
+
+/* Secondary filled (indigo-style) */
+.cta-secondary {
+  background: linear-gradient(180deg, rgba(79,70,229,0.9), rgba(79,70,229,0.8));
+  border: 1px solid rgba(79,70,229,0.18);
+  color: white;
+}
+
+/* Outline / soft glass */
+.cta-outline {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Ghost (for WhatsApp without vivid green) */
+.cta-ghost {
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Small resume button */
+.cta-mini { padding: 0.45rem 0.85rem; font-size: 0.88rem; min-height: 36px; }
+
+/* Hover / active interactions */
+.cta-btn:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.cta-btn:active { transform: translateY(-2px) scale(.995); transition-duration: 120ms; }
+
+/* Focus visible (accessibility) */
+.cta-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.18), 0 14px 36px rgba(0,0,0,0.45);
+  border-color: rgba(99,102,241,0.45);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .cta-btn { font-size: 0.90rem; padding: 0.6rem 0.9rem; }
+  .cta-primary { padding: 0.6rem 0.9rem; font-size: 0.95rem; }
+}
+
+/* subtle icon sizing */
+.cta-btn svg { display:block; width: 1.05em; height: 1.05em; opacity: 0.95; }
+
+/* reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn, .cta-btn:hover { transition: none !important; transform: none !important; }
+}
+</style>
+
+      <footer class="mt-10 text-white/40 text-sm">
+        © <span id="y"></span> Santhosh Raj V · AWS Cloud & DevOps.
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle (guarded for safety)
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenuRoot = document.getElementById('mobileMenu');
+    const mobileMenuPanel = mobileMenuRoot ? mobileMenuRoot.querySelector('div') : null;
+
+    function toggleMenu() {
+      if (!mobileMenuPanel) return;
+      const isHidden = mobileMenuPanel.classList.contains('hidden');
+      mobileMenuPanel.classList.toggle('hidden', !isHidden);
+      menuBtn.setAttribute('aria-expanded', String(isHidden));
+    }
+
+    if (menuBtn && mobileMenuPanel) {
+      menuBtn.addEventListener('click', toggleMenu);
+      mobileMenuPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        if (!mobileMenuPanel.classList.contains('hidden')) toggleMenu();
+      }));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenuPanel.classList.contains('hidden')) toggleMenu();
+      });
+    }
+
+    // ---- IntersectionObserver: add .in to .reveal when visible ----
+    const obs = 'IntersectionObserver' in window ? new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+    }, {rootMargin: '0px 0px -10% 0px', threshold: 0.1}) : null;
+
+    document.querySelectorAll('.reveal').forEach(el=>{ if(obs) obs.observe(el); else el.classList.add('in'); });
+
+    // ---- Magnetic hover (gentle) for elements with .magnet ----
+    const magnets = document.querySelectorAll('.magnet');
+    magnets.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width/2) / (r.width/2);
+        const y = (e.clientY - r.top - r.height/2) / (r.height/2);
+        el.style.transform = `translate(${x*4}px, ${y*4}px)`; // subtle
+      });
+      el.addEventListener('mouseleave', ()=>{ el.style.transform = ''; });
+    });
+
+    // ---- Subtle tilt for cards with [data-tilt] ----
+    const tiltEls = document.querySelectorAll('[data-tilt]');
+    tiltEls.forEach(el => {
+      const max = 4; // degrees
+      const reset = () => { el.style.transform = ''; el.style.transition = 'transform 300ms var(--ease)'; setTimeout(()=>{el.style.transition='';}, 300); };
+      el.addEventListener('mousemove', (e) => {
+        const b = el.getBoundingClientRect();
+        const px = (e.clientX - b.left) / b.width - 0.5;
+        const py = (e.clientY - b.top) / b.height - 0.5;
+        el.style.transform = `rotateX(${-py*max}deg) rotateY(${px*max}deg) translateY(-4px)`;
+      });
+      el.addEventListener('mouseleave', reset);
+    });
+
+    // ---- Cursor-follow glow ----
+    const glow = document.getElementById('glow');
+    let raf;
+    window.addEventListener('mousemove', (e)=>{
+      if(raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(()=>{
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+    });
+
+    // Respect reduced motion: disable interactive effects
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) {
+      document.querySelectorAll('[data-tilt]').forEach(el=>el.removeAttribute('data-tilt'));
+      document.getElementById('glow').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
